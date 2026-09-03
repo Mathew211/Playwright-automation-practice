@@ -21,9 +21,11 @@ The projects in this repository cover topics such as:
 - Locators
 - Web-first assertions
 - Data-driven and parameterized testing
+- Positive and negative test scenarios
 - Test organization with `test.describe()`
 - Test steps with `test.step()`
 - Working with forms and dropdowns
+- Checkout and form validation
 - Dynamic data validation
 - JavaScript arrays and objects in automated tests
 
@@ -43,14 +45,22 @@ Current test coverage includes:
 - Product price sorting
 - Parameterized test scenarios
 - User shopping flow
+- Complete checkout flow
+- Order summary validation
+- Successful order completion
+- Checkout form validation
+- Negative checkout scenarios
 
 The project uses:
 
-- Page Object Model
+- Page Object Model (POM)
 - Custom Playwright fixtures
 - Test data separated from test logic
-- Playwright locators and assertions
+- Playwright locators and web-first assertions
+- Data-driven and parameterized tests
+- `test.describe()` for test organization
 - `test.step()` for organizing larger test scenarios
+- Positive and negative test scenarios
 
 More scenarios will be added as the project develops.
 
@@ -134,6 +144,5 @@ The projects are gradually expanded with new scenarios and automation concepts a
 
 ## 📖 Documentation
 
-The tests are developed primarily using the official Playwright documentation:
-
-https://playwright.dev/docs/writing-tests
+The tests are developed primarily using the
+[official Playwright documentation](https://playwright.dev/docs/writing-tests).
