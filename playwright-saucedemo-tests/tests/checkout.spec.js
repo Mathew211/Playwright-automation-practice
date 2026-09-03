@@ -1,5 +1,5 @@
 import { test, expect, user, item } from "../fixtures/fixtures";
-import { customer, emptyFields, invalidCustomer } from "../testData/data";
+import { customer, invalidData } from "../testData/data";
 
 test.beforeEach(async ({ loginPage, page }) => {
   await loginPage.open();
@@ -27,7 +27,7 @@ test.describe("User can complete an order", () => {
     await test.step("Fill the checkout form", async () => {
       await checkoutPage.fillCheckoutForm(customer);
     });
-    await test.step("Press the continue button ", async () => {
+    await test.step("Press the continue button", async () => {
       await checkoutPage.pressContinueButton();
     });
     await test.step("Check the summary", async () => {
@@ -39,44 +39,44 @@ test.describe("User can complete an order", () => {
     });
     await test.step("Press the finish button ", async () => {
       await checkoutPage.pressFinishButton();
-      await expect(checkoutPage.orderFinisMessage).toHaveText(
+      await expect(checkoutPage.orderConfirmationMessage).toHaveText(
         "Thank you for your order!",
       );
     });
   });
 });
 
-test.describe("Checkout validation", () => {
-  test("should display validation error for invalid checkout data", async ({
-    inventoryPage,
-    cartPage,
-    checkoutPage,
-    page,
-  }) => {
-    await test.step("Add product to the cart", async () => {
-      await inventoryPage.addToCart(item[0]);
-    });
-    await test.step("Visit the cart", async () => {
-      await inventoryPage.visitCartPage();
-      await expect(cartPage.productNames).toHaveText(item[0]);
-    });
-    await test.step("Press the checkout", async () => {
-      await checkoutPage.pressCheckoutButton();
-    });
-    await test.step("Fill the checkout form", async () => {
-      await checkoutPage.fillCheckoutForm(invalidCustomer);
-    });
-    await test.step("Press the continue button ", async () => {
-      await checkoutPage.pressContinueButton();
-    });
-    await test.step("Verify customer form validation", async () => {
-      await expect(page).toHaveURL(
-        "https://www.saucedemo.com/checkout-step-one.html",
-      );
-      await expect(checkoutPage.customerErrorMessage).toBeVisible();
-      await expect(checkoutPage.customerErrorMessage).toHaveText(
-        "Error: Postal Code is required",
-      );
-    });
-  });
+test.describe("Checkout validation for empty fields", () => {
+  for (const checkoutData of invalidData) {
+    test(
+      checkoutData.caseName,
+      async ({ inventoryPage, cartPage, checkoutPage, page }) => {
+        await test.step("Add product to the cart", async () => {
+          await inventoryPage.addToCart(item[0]);
+        });
+        await test.step("Visit the cart", async () => {
+          await inventoryPage.visitCartPage();
+          await expect(cartPage.productNames).toHaveText(item[0]);
+        });
+        await test.step("Press the checkout", async () => {
+          await checkoutPage.pressCheckoutButton();
+        });
+        await test.step("Fill the checkout form", async () => {
+          await checkoutPage.fillCheckoutForm(checkoutData.customer);
+        });
+        await test.step("Press the continue button", async () => {
+          await checkoutPage.pressContinueButton();
+        });
+        await test.step("Verify customer form validation", async () => {
+          await expect(page).toHaveURL(
+            "https://www.saucedemo.com/checkout-step-one.html",
+          );
+          await expect(checkoutPage.customerErrorMessage).toBeVisible();
+          await expect(checkoutPage.customerErrorMessage).toHaveText(
+            checkoutData.expectedError,
+          );
+        });
+      },
+    );
+  }
 });

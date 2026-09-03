@@ -37,35 +37,33 @@ test.describe("Cart", () => {
     expect(products).toEqual(item);
     await expect(cartPage.productNames).toHaveCount(item.length);
   });
-});
-test("Should remove a selected produc", async ({
-  page,
-  inventoryPage,
-  cartPage,
-}) => {
-  await inventoryPage.addToCart(item[0]);
-  await inventoryPage.addToCart(item[1]);
+  test("Should remove a selected product", async ({
+    page,
+    inventoryPage,
+    cartPage,
+  }) => {
+    await inventoryPage.addToCart(item[0]);
+    await inventoryPage.addToCart(item[1]);
 
-  await expect(inventoryPage.cartCounter).toHaveText("2");
+    await expect(inventoryPage.cartCounter).toHaveText("2");
 
-  await inventoryPage.visitCartPage();
+    await inventoryPage.visitCartPage();
 
-  await expect(page.getByText(item[0], { exact: true })).toBeVisible();
-  await expect(page.getByText(item[1], { exact: true })).toBeVisible();
+    await expect(page.getByText(item[0], { exact: true })).toBeVisible();
+    await expect(page.getByText(item[1], { exact: true })).toBeVisible();
 
-  await cartPage.removeFromCart(item[0]);
+    await cartPage.removeFromCart(item[0]);
 
-  await expect(page.getByText(item[0], { exact: true })).toBeHidden();
-  await expect(page.getByText(item[1], { exact: true })).toBeVisible();
+    await expect(page.getByText(item[0], { exact: true })).toBeHidden();
+    await expect(page.getByText(item[1], { exact: true })).toBeVisible();
 
-  await expect(inventoryPage.cartCounter).toHaveText("1");
+    await expect(inventoryPage.cartCounter).toHaveText("1");
+  });
 });
 
 test.describe("Product sorting", () => {
   for (const sortData of sortedProductsBy) {
-    test(`Should sort products by price from: ${sortData.sortName}`, async ({
-      inventoryPage,
-    }) => {
+    test(`Sort products: ${sortData.sortName}`, async ({ inventoryPage }) => {
       await inventoryPage.sortProducts(sortData.sortName);
 
       const actualPrices = await inventoryPage.getPrices();
@@ -77,9 +75,8 @@ test.describe("Product sorting", () => {
 });
 
 test.describe("Shopping flow", () => {
-  test("should add and remove products from the cart", async ({
+  test("Should add and remove products from the cart", async ({
     page,
-    loginPage,
     inventoryPage,
     cartPage,
   }) => {
@@ -87,7 +84,7 @@ test.describe("Shopping flow", () => {
       await inventoryPage.addToCart(item[0]);
       await inventoryPage.addToCart(item[1]);
     });
-    await test.step("Verify cart ", async () => {
+    await test.step("Verify cart", async () => {
       await inventoryPage.visitCartPage();
       const products = await cartPage.getProductNames();
       expect(products).toEqual(item);
@@ -97,7 +94,7 @@ test.describe("Shopping flow", () => {
     await test.step("Remove product", async () => {
       await cartPage.removeFromCart(item[0]);
     });
-    await test.step("verify cart after removing the product", async () => {
+    await test.step("Verify cart after removing the product", async () => {
       await expect(page.getByText(item[0], { exact: true })).toBeHidden();
       await expect(page.getByText(item[1], { exact: true })).toBeVisible();
       await expect(inventoryPage.cartCounter).toHaveText("1");

@@ -9,14 +9,14 @@ export const data = [
   },
   {
     caseTitle: "Should reject an incorrect username",
-    caseName: "Incrocect username",
+    caseName: "Incorrect username",
     login: "invalid_user",
     password: "secret_sauce",
     expectedError:
       "Epic sadface: Username and password do not match any user in this service",
   },
   {
-    caseTitle: "should display an error for empty credentials",
+    caseTitle: "Should display an error for empty credentials",
     caseName: "Empty credentials",
     login: "",
     password: "",
@@ -40,7 +40,20 @@ export const customer = {
   postalCode: "12345",
 };
 
-export const invalidCustomer = {
-  ...customer,
-  postalCode: "",
-};
+export const invalidData = [
+  {
+    caseName: "Invalid customer first name",
+    customer: { ...customer, name: "" },
+    expectedError: "Error: First Name is required",
+  },
+  {
+    caseName: "Invalid customer last name",
+    customer: { ...customer, surname: "" },
+    expectedError: "Error: Last Name is required",
+  },
+  {
+    caseName: "Invalid customer postal code",
+    customer: { ...customer, postalCode: "" },
+    expectedError: "Error: Postal Code is required",
+  },
+];

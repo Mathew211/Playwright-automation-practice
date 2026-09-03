@@ -2,7 +2,7 @@ export class CheckoutPage {
   constructor(page) {
     this.page = page;
     this.checkoutUrl = "https://www.saucedemo.com/checkout-step-two.html";
-    this.orderFinisMessage = page.locator(".complete-header");
+    this.orderConfirmationMessage = page.locator(".complete-header");
     this.productPrice = page.locator(".inventory_item_price");
     this.customerErrorMessage = page.locator(".error-message-container");
   }
