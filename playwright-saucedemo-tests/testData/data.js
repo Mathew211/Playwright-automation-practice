@@ -39,3 +39,8 @@ export const customer = {
   surname: "Kowalsky",
   postalCode: "12345",
 };
+
+export const invalidCustomer = {
+  ...customer,
+  postalCode: "",
+};

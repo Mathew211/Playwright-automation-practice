@@ -4,6 +4,7 @@ export class CheckoutPage {
     this.checkoutUrl = "https://www.saucedemo.com/checkout-step-two.html";
     this.orderFinisMessage = page.locator(".complete-header");
     this.productPrice = page.locator(".inventory_item_price");
+    this.customerErrorMessage = page.locator(".error-message-container");
   }
 
   async pressCheckoutButton() {
