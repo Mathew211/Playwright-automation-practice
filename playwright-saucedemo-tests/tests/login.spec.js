@@ -23,7 +23,7 @@ test.describe("Login", () => {
 
 test.describe("Login validation", () => {
   for (const testData of data) {
-    test(`${testData.CcaseName} : ${testData.caseName}`, async ({
+    test(`${testData.caseTitle} : ${testData.caseName}`, async ({
       loginPage,
     }) => {
       await loginPage.login(testData.login, testData.password);

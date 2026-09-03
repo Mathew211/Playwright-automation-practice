@@ -34,3 +34,8 @@ export const sortedProductsBy = [
     sortFunction: (a, b) => b - a,
   },
 ];
+export const customer = {
+  name: "John",
+  surname: "Kowalsky",
+  postalCode: "12345",
+};
