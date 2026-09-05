@@ -1,5 +1,12 @@
-import { test, expect, user } from "../fixtures/fixtures";
-import { data } from "../testData/data.js";
+import { test, expect } from "../fixtures/fixtures";
+import { data, user } from "../testData/data.js";
+
+test.use({
+  storageState: {
+    cookies: [],
+    origins: [],
+  },
+});
 
 test.beforeEach(async ({ loginPage }) => {
   await loginPage.open();

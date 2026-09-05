@@ -1,3 +1,7 @@
+export const user = {
+  login: "standard_user",
+  password: "secret_sauce",
+};
 export const data = [
   {
     caseTitle: "Should reject an incorrect password",

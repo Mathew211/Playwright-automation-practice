@@ -32,10 +32,6 @@ export const test = base.extend({
     await use(checkoutPage);
   },
 });
-export const user = {
-  login: "standard_user",
-  password: "secret_sauce",
-  wrongPassword: "wrong_password",
-};
+
 export const item = ["Sauce Labs Backpack", "Sauce Labs Bike Light"];
 export { expect };

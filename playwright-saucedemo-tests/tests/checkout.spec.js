@@ -1,9 +1,8 @@
 import { test, expect, user, item } from "../fixtures/fixtures";
 import { customer, invalidData } from "../testData/data";
 
-test.beforeEach(async ({ loginPage, page }) => {
-  await loginPage.open();
-  await loginPage.login(user.login, user.password);
+test.beforeEach(async ({ page }) => {
+  await page.goto("/inventory.html");
 
   await expect(page.getByText("Products", { exact: true })).toBeVisible();
 });
