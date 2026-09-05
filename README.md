@@ -13,21 +13,20 @@ The repository contains different testing scenarios and applications. Each proje
 
 ## 📚 What I Practice
 
-The projects in this repository cover topics such as:
-
 - End-to-End (E2E) testing
 - Page Object Model (POM)
-- Playwright fixtures
-- Locators
+- Custom Playwright fixtures
+- Playwright locators
 - Web-first assertions
 - Data-driven and parameterized testing
 - Positive and negative test scenarios
 - Test organization with `test.describe()`
 - Test steps with `test.step()`
-- Working with forms and dropdowns
-- Checkout and form validation
+- Form and checkout validation
+- URL validation
+- Working with dropdowns
 - Dynamic data validation
-- JavaScript arrays and objects in automated tests
+- JavaScript arrays, objects, spread syntax, and callbacks
 
 ## 📂 Projects
 
@@ -43,13 +42,15 @@ Current test coverage includes:
 - Removing products from the cart
 - Cart content validation
 - Product price sorting
-- Parameterized test scenarios
-- User shopping flow
+- Product details validation
+- Product name, price, and description verification
+- Adding a product to the cart from the product details page
 - Complete checkout flow
 - Order summary validation
 - Successful order completion
 - Checkout form validation
-- Negative checkout scenarios
+- Parameterized checkout validation
+- User shopping flow
 
 The project uses:
 
@@ -68,18 +69,17 @@ More scenarios will be added as the project develops.
 
 ```text
 playwright-automation-practice/
-│
-├── saucedemo/
-│   ├── tests/
-│   ├── pages/
-│   ├── fixtures/
-│   ├── testData/
-│   ├── playwright.config.js
-│   └── package.json
-│
-├── future-project/
-│
-└── README.md
+├── tests/
+├── pages/
+│   ├── LoginPage.js
+│   ├── InventoryPage.js
+│   ├── CartPage.js
+│   ├── CheckoutPage.js
+│   └── ProductDetailsPage.js
+├── fixtures/
+├── testData/
+├── playwright.config.js
+└── package.json
 ```
 
 Each application or testing area can be maintained as a separate project inside the repository.
