@@ -15,7 +15,7 @@ test.describe("User can complete an order", () => {
     page,
   }) => {
     await test.step("Add product to the cart", async () => {
-      await inventoryPage.addToCart(item[0]);
+      await inventoryPage.addToCart(item[0].name);
     });
     await test.step("Visit the cart", async () => {
       await inventoryPage.visitCartPage();
@@ -51,11 +51,11 @@ test.describe("Checkout validation for empty fields", () => {
       checkoutData.caseName,
       async ({ inventoryPage, cartPage, checkoutPage, page }) => {
         await test.step("Add product to the cart", async () => {
-          await inventoryPage.addToCart(item[0]);
+          await inventoryPage.addToCart(item[0].name);
         });
         await test.step("Visit the cart", async () => {
           await inventoryPage.visitCartPage();
-          await expect(cartPage.productNames).toHaveText(item[0]);
+          await expect(cartPage.productNames).toHaveText(item[0].name);
         });
         await test.step("Press the checkout", async () => {
           await checkoutPage.pressCheckoutButton();

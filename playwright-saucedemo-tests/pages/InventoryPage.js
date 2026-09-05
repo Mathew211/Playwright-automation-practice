@@ -27,4 +27,12 @@ export class InventoryPage {
     });
     return actualPrices;
   }
+  async getProductPrice() {
+    const allPrices = await this.productPrices;
+    return allPrices;
+  }
+  async openProduct(productName) {
+    const inventoryItem = this.productNames.filter({ hasText: productName });
+    await inventoryItem.click();
+  }
 }
