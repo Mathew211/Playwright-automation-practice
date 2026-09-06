@@ -1,6 +1,7 @@
 export class InventoryPage {
   constructor(page) {
     this.page = page;
+    this.inventoryTitle = page.locator(".title");
     this.cartCounter = page.locator(".shopping_cart_badge");
     this.cartIcon = page.locator(".shopping_cart_container");
     this.sortDropdown = page.locator(".product_sort_container");
