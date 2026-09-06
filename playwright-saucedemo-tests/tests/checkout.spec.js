@@ -33,7 +33,7 @@ test.describe("User can complete an order", () => {
       await expect(page).toHaveURL(
         "https://www.saucedemo.com/checkout-step-two.html",
       );
-      await expect(cartPage.productNames).toHaveText(item[0]);
+      await expect(cartPage.productNames).toHaveText(item[0].name);
       await expect(checkoutPage.productPrice).toBeVisible();
     });
     await test.step("Press the finish button ", async () => {

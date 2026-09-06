@@ -15,4 +15,12 @@ export class ProductDetailsPage {
   async backToProducts() {
     await this.page.getByRole("button", { name: "Back to products" }).click();
   }
+  async getProductName(productName) {
+    const product = this.productName.filter({ hasText: productName });
+    return product;
+  }
+  async getProductPrice(productName) {
+    const allPrices = this.productPrice.filter({ hasText: productName });
+    return allPrices;
+  }
 }

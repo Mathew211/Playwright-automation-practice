@@ -34,7 +34,7 @@ test.describe("Cart", () => {
     const products = await cartPage.getProductNames();
 
     expect(products).toEqual([item[0].name, item[1].name]);
-    await expect(cartPage.productNames).toHaveCount(item.length);
+    await expect(cartPage.productNames).toHaveCount(item.length - 4);
   });
   test("Should remove a selected product", async ({
     page,
@@ -97,7 +97,7 @@ test.describe("Shopping flow", () => {
       await expect(page.getByText(item[0].name, { exact: true })).toBeHidden();
       await expect(page.getByText(item[1].name, { exact: true })).toBeVisible();
       await expect(inventoryPage.cartCounter).toHaveText("1");
-      await expect(cartPage.productNames).toHaveCount(item.length - 1);
+      await expect(cartPage.productNames).toHaveCount(item.length - 5);
     });
   });
 });

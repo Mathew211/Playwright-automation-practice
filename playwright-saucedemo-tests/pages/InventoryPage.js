@@ -1,6 +1,7 @@
 export class InventoryPage {
   constructor(page) {
     this.page = page;
+    this.item = page.locator(".inventory_item");
     this.inventoryTitle = page.locator(".title");
     this.cartCounter = page.locator(".shopping_cart_badge");
     this.cartIcon = page.locator(".shopping_cart_container");
@@ -9,10 +10,8 @@ export class InventoryPage {
     this.productNames = page.locator(".inventory_item_name");
   }
   async addToCart(productName) {
-    const inventoryItem = this.page
-      .locator(".inventory_item")
-      .filter({ hasText: productName });
-    await inventoryItem.getByText("Add to cart").click();
+    const inventoryItem = this.item.filter({ hasText: productName });
+    await inventoryItem.getByRole("button", { name: "Add to cart" }).click();
   }
   async visitCartPage() {
     await this.cartIcon.click();
@@ -28,12 +27,17 @@ export class InventoryPage {
     });
     return actualPrices;
   }
-  async getProductPrice() {
-    const allPrices = await this.productPrices;
-    return allPrices;
+  getProductName(productName) {
+    const product = this.item.filter({ hasText: productName });
+
+    return product.locator(".inventory_item_name");
+  }
+  getProductPrice(productName) {
+    const product = this.item.filter({ hasText: productName });
+    return product.locator(".inventory_item_price");
   }
   async openProduct(productName) {
-    const inventoryItem = this.productNames.filter({ hasText: productName });
-    await inventoryItem.click();
+    const product = this.productNames.filter({ hasText: productName });
+    await product.click();
   }
 }

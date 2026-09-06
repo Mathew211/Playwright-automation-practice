@@ -51,3 +51,29 @@ test.describe("Product Details Page", () => {
     });
   });
 });
+test.describe("Product Compare", () => {
+  for (const product of item) {
+    test(`Should compare ${product.name} on inventory and details pages`, async ({
+      productDetailsPage,
+      inventoryPage,
+      page,
+    }) => {
+      await test.step("Verify product name and price on inventory page", async () => {
+        const productName = inventoryPage.getProductName(product.name);
+        const productPrice = inventoryPage.getProductPrice(product.name);
+        await expect(productName).toHaveText(product.name);
+        await expect(productPrice).toContainText(product.price);
+      });
+      await test.step("Open product details page", async () => {
+        await inventoryPage.openProduct(product.name);
+        await expect(page).toHaveURL(/inventory-item.html\?id=\d+/);
+      });
+      await test.step("Verify product name and price on details page", async () => {
+        await expect(productDetailsPage.productName).toHaveText(product.name);
+        await expect(productDetailsPage.productPrice).toContainText(
+          product.price,
+        );
+      });
+    });
+  }
+});

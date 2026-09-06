@@ -51,5 +51,26 @@ export const item = [
     price: "$9.99",
     description: "A red light for your bike.",
   },
+  {
+    name: "Sauce Labs Bolt T-Shirt",
+    price: "$15.99",
+    description: "Get your testing engine running with this sleek t-shirt.",
+  },
+  {
+    name: "Sauce Labs Fleece Jacket",
+    price: "$49.99",
+    description: "It's not just a jacket, it's a fleece.",
+  },
+  {
+    name: "Sauce Labs Onesie",
+    price: "$7.99",
+    description: "A cute onesie for your baby.",
+  },
+  {
+    name: "Test.allTheThings() T-Shirt (Red)",
+    price: "$15.99",
+    description:
+      "This classic Sauce Labs t-shirt is perfect to wear when cozying up to your favorite testing framework.",
+  },
 ];
 export { expect };
